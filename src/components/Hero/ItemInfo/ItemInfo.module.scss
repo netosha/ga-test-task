@@ -1,0 +1,108 @@
+@import "../../../styles/variables";
+
+
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  font-family: PexelGrotesk, sans-serif;
+}
+
+.author{
+  font-family: "TTSquaresCondensed",sans-serif;
+  font-size: 0.875rem;
+  color: rgba(0,0,0,.4);
+  margin: 0;
+}
+
+.name{
+  margin-top: 0.75rem;
+  line-height: 1;
+  font-size: 2.5rem;
+}
+
+.misc{
+  margin-top: 1.25rem;
+  display: flex;
+
+  & > button{
+    margin-right: 0.5rem;
+
+    &:last-child{
+      margin-right: 0;
+    }
+  }
+}
+
+.like_button{
+  font-family: "TTSquaresCondensed",sans-serif;
+  background-color: rgba(#50534C, 0.2);
+
+  svg{
+    color: black;
+    opacity: 0.4;
+    transition: 0.2s;
+    margin-right: 6px;
+  }
+
+  &:hover{
+    background-color: white;
+    opacity: 1;
+
+    svg{
+      color: red;
+      opacity: 1;
+    }
+  }
+
+  border-radius: 9999px;
+  font-size: 0.75rem;
+
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: .3s
+}
+
+.more_info_button{
+  font-family: "TTSquaresCondensed", sans-serif;
+  background-color: transparent;
+  border-radius: 9999px;
+
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 8px 16px;
+
+  transition: 0.2s;
+
+  &:hover{
+    color: white;
+    background-color: black;
+  }
+
+  svg{
+    margin-left: 10px;
+  }
+}
+
+.bid_button{
+  font-family: "PexelGrotesk", sans-serif;
+  border: 1px transparent solid;
+
+  margin: 1.75rem 0 0 0;
+  padding: 15px 0;
+  color: white;
+
+  border-radius: 9999px;
+  width: 100%;
+  background-color: black;
+
+  transition: 0.2s;
+
+  &:hover{
+    color: black;
+    background-color: transparent;
+    border: 1px #000 solid;
+  }
+}
