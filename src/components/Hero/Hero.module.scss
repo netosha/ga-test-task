@@ -1,7 +1,8 @@
 @import "../../styles/variables";
 
 .wrapper{
-  background: $primary;
+  background-color: $primary;
+  transition: background-color 0.2s;
   min-height: -webkit-fill-available;
   min-height: 100vh;
   //noinspection CssInvalidPropertyValue
@@ -56,9 +57,11 @@
   align-items: center;
   z-index: 1;
 
+  padding: 1rem 0;
+
   //background: pink;
 
-  max-width: 1100px;
+  max-width: 1280px;
 
   @media (max-width: 1280px) {
     max-width: 968px;
@@ -70,7 +73,6 @@
 
   // Mobile content starts here
   @media (max-width: 768px) {
-    padding: 0 0 1rem 0;
     max-width: 100%;
     flex-direction: column;
     align-items: normal;
@@ -80,29 +82,100 @@
 .item{
   display: flex;
   border-radius: 24px;
-
   max-height: 745px;
-  height: 80%;
-  width: 400px;
+  height: calc(max(400px, 100%));
+  width: calc(min(500px, 100%));
 
   background-size: cover;
   background-image: url("/thumbnail.png");
-  //margin-right: 80px;
+  margin-right: 5rem;
+
+  box-shadow: 0px 40px 240px rgba(0, 0, 0, 0.2);
+  @media (max-width: 1024px) {
+    margin-right: 4rem;
+  }
 
   // Mobile content starts here
   @media (max-width: 768px) {
     width: 100%;
+    height: 100%;
+    min-height: 400px;
   }
 }
 
 .info{
   max-width: 320px;
-  margin-left: 40px;
   width: 100%;
 
   @media (max-width: 768px) {
     margin-top: 12px;
     margin-left: 0;
     max-width: 100%;
+  }
+}
+
+.slider{
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.video_background{
+  background-color: $secondary;
+}
+
+.other_actions{
+  display: flex;
+  max-width: 540px;
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.add_mask_button{
+  border: 1px transparent solid;
+  cursor: pointer;
+
+  padding: 0.75rem 1.5rem;
+  color: white;
+  font-size: 1rem;
+  border-radius: 9999px;
+  width: 100%;
+  background-color: black;
+
+  transition: 0.2s;
+
+
+  &:hover{
+    color: black;
+    background-color: transparent;
+    border: 1px #000 solid;
+  }
+}
+
+.connect_wallet_button{
+  border: 1px solid rgba(0, 0, 0, 1);
+  cursor: pointer;
+  font-size: 1rem;
+  white-space: nowrap;
+  margin-right: 0.5rem;
+  padding: 0.75rem 1.5rem;
+
+  background-color: transparent;
+  border-radius: 9999px;
+
+  transition: 0.2s;
+
+  &:hover{
+    color: white;
+    background-color: black;
   }
 }

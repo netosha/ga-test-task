@@ -1,7 +1,10 @@
 export interface ItemInfoProps {
   author: string;
   name: string;
-  minimumBid: number;
-  till: Date;
+  bid: {
+    currency: 'ETH';
+    amount: number;
+    till: Date;
+  };
   likes: number;
 }
