@@ -1,13 +1,19 @@
 import React from 'react';
+import Slider from '@components/Slider';
+import { useMode } from '@contexts/heroMode';
 import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
+  const { mode, toggleMode } = useMode();
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.logo}>
         <img src="/mssft.svg" alt="short-logo" />
       </div>
-      <div className={styles.slider_container}>middle</div>
+      <div className={styles.slider_container}>
+        <Slider mode={mode} toggleMode={toggleMode} />
+      </div>
       <button type="button" className={styles.plus_button}>
         <svg
           width="14"

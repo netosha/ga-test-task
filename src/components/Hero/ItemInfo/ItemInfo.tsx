@@ -1,9 +1,29 @@
 import React from 'react';
+import { getTimeDifference } from '@src/utils';
 import styles from './ItemInfo.module.scss';
 import { ItemInfoProps } from './ItemInfo.types';
 
 const ItemInfo: React.FC<ItemInfoProps> = (props) => {
-  const { author, name, likes, minimumBid, till } = props;
+  const { author, name, likes, bid } = props;
+  const { amount, till, currency } = bid;
+
+  const [time, setTime] = React.useState<{
+    hours: number;
+    minutes: number;
+    seconds: number;
+  }>({ hours: 0, minutes: 0, seconds: 0 });
+
+  const updateTimer = () => {
+    const diff = getTimeDifference(new Date(), till);
+
+    setTime({ ...diff });
+    setTimeout(updateTimer, 1000);
+  };
+
+  React.useEffect(() => {
+    updateTimer();
+    setTimeout(updateTimer, 1000);
+  }, []);
 
   return (
     <div className={styles.wrapper}>
@@ -25,7 +45,6 @@ const ItemInfo: React.FC<ItemInfoProps> = (props) => {
           </svg>
           {likes}
         </button>
-
         <button type="button" className={styles.more_info_button}>
           More info
           <svg
@@ -42,7 +61,39 @@ const ItemInfo: React.FC<ItemInfoProps> = (props) => {
           </svg>
         </button>
       </div>
-      <button className={styles.bid_button}>Place a Bid</button>
+      <button className={styles.place_button} type="button">
+        Place a Bid
+      </button>
+      <div className={styles.additional_info}>
+        <div className={styles.bid}>
+          <span className={styles.bid_label}>Minimum bid</span>
+          <span className={styles.bid_amount}>
+            {amount} {currency}
+          </span>
+          <span className={styles.bid_fiat}>$ 420</span>
+        </div>
+        <div className={styles.divider} />
+        <div className={styles.timer_wrapper}>
+          <div className={styles.timer_label}>Auction ending in</div>
+          <div className={styles.timer}>
+            <div className={styles.timer_section}>
+              {time.hours}
+              <span className={styles.timer_mark}>Hours</span>
+            </div>
+            <div className={styles.timer_section}>:</div>
+            <div className={styles.timer_section}>
+              {time.minutes}
+              <span className={styles.timer_mark}>Minutes</span>
+            </div>
+            <div className={styles.timer_section}>:</div>
+
+            <div className={styles.timer_section}>
+              {time.seconds}
+              <span className={styles.timer_mark}>Seconds</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

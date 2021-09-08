@@ -1,14 +1,21 @@
 import React from 'react';
+import cn from 'clsx';
 import Header from '@components/Header';
-import { useWindowSize } from '@src/utils';
 import ItemInfo from '@components/Hero/ItemInfo';
 
+import Slider from '@components/Slider';
+import { useMode } from '@src/contexts/heroMode';
 import styles from './Hero.module.scss';
 
 const Hero: React.FC = () => {
-  const { innerWidth } = useWindowSize();
+  const { mode, toggleMode } = useMode();
   return (
-    <section className={styles.wrapper}>
+    <section
+      className={cn(
+        styles.wrapper,
+        mode === 'video' && styles.video_background,
+      )}
+    >
       <div className={styles.logo_wrapper}>
         <img src="/masksnft.svg" className={styles.logo} alt="text-logo" />
       </div>
@@ -23,10 +30,24 @@ const Hero: React.FC = () => {
             author="@cameron"
             name="Sometimes Typhoons Come"
             likes={24}
-            minimumBid={5}
-            till={new Date()}
+            bid={{
+              currency: 'ETH',
+              amount: 3.22,
+              till: new Date(new Date().setDate(new Date().getDate() + 1)),
+            }}
           />
         </div>
+      </div>
+      <div className={styles.slider}>
+        <Slider mode={mode} toggleMode={toggleMode} />
+      </div>
+      <div className={styles.other_actions}>
+        <button type="button" className={styles.connect_wallet_button}>
+          Connect Wallet
+        </button>
+        <button type="button" className={styles.add_mask_button}>
+          Add Mask
+        </button>
       </div>
     </section>
   );
